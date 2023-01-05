@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using Microsoft.Extensions.FileSystemGlobbing.Internal;
-using System.Text.RegularExpressions;
-
-namespace TwitterSentiments.Services
+﻿namespace TwitterSentiments.Services
 {
     public interface ITweetHashTagService
     {

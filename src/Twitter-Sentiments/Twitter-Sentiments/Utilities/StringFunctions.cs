@@ -1,11 +1,10 @@
 ﻿using System.Text.RegularExpressions;
-using TwitterSentiments.Domain;
 
 namespace TwitterSentiments.Utilities
 {
     public static class StringFunctions
     {
-        static Regex hashTagRegex = new Regex(Constants.HashTagPattern);
+        private static Regex hashTagRegex = new Regex(Constants.HashTagPattern);
 
         public static string[] ExtractTwitterTagsFromText(string textToSearch)
         {

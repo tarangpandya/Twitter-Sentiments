@@ -1,10 +1,5 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using TwitterSentiments.Services;
-using TwitterSentiments.Domain;
-using TwitterSentiments.Mediators;
-using TwitterSentiments.Utilities;
 
 namespace TwitterSentiments.Controllers
 {
@@ -18,7 +13,7 @@ namespace TwitterSentiments.Controllers
         private readonly ITweetHashTagService tweetHashTagService;
 
         public TwittterSentimentController(ILogger<TwittterSentimentController> logger
-            ,ITwitterService twitterService
+            , ITwitterService twitterService
             , ITweetCountService tweetCountService
             , ITweetHashTagService tweetHashTagService
             )
@@ -52,9 +47,9 @@ namespace TwitterSentiments.Controllers
         }
 
         [HttpGet("GetTopTags")]
-        public IActionResult GetTopTags([FromQuery(Name = "top")]int top)
+        public IActionResult GetTopTags([FromQuery(Name = "top")] int top)
         {
-            if(top == 0)
+            if (top == 0)
             {
                 top = 10;
             }

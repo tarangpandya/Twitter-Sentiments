@@ -1,5 +1,4 @@
 ﻿using TwitterSentiments.Data;
-using TwitterSentiments.Domain;
 using TwitterSentiments.Utilities;
 
 namespace TwitterSentiments.Services
@@ -27,7 +26,7 @@ namespace TwitterSentiments.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Error while saving tag from { tweetText }.");
+                logger.LogError(ex, $"Error while saving tag from {tweetText}.");
             }
         }
 
@@ -42,7 +41,6 @@ namespace TwitterSentiments.Services
                     Occurance = p.Value,
                 }).AsQueryable();
             return tags;
-
         }
 
         private void SaveTag(string[] tags)

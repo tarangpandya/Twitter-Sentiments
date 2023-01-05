@@ -16,7 +16,7 @@ namespace TwitterSentiments.Mediators
         {
             tweetHashTagService.ExtractTags(request.Tweet?.Data?.Text);
 
-            if(cancellationToken.IsCancellationRequested)
+            if (cancellationToken.IsCancellationRequested)
             {
                 return Task.FromCanceled(cancellationToken);
             }

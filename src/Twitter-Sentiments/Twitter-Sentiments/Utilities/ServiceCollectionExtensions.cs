@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using TwitterSentiments.Data;
 using TwitterSentiments.Services;
 

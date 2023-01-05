@@ -5,6 +5,5 @@
         public void Add();
 
         public int GetCount();
-
     }
 }

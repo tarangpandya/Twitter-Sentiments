@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using MediatR;
-using Microsoft.Extensions.Logging;
+﻿using MediatR;
 using TwitterSentiments.Domain;
 
 namespace TwitterSentiments.Mediators
