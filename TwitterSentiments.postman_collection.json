@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "6e5e5738-8a5b-4733-882e-b9ba007abbdc",
+		"name": "TwitterSentiments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "385970"
+	},
+	"item": [
+		{
+			"name": "FetchTweets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}FetchTweets",
+					"host": [
+						"{{Base_URL}}FetchTweets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTweetCount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}GetTweetCount",
+					"host": [
+						"{{Base_URL}}GetTweetCount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTopTags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}GetTopTags?top=50",
+					"host": [
+						"{{Base_URL}}GetTopTags"
+					],
+					"query": [
+						{
+							"key": "top",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base_URL",
+			"value": "https://localhost:7241/TwittterSentiment/",
+			"type": "string"
+		}
+	]
+}
