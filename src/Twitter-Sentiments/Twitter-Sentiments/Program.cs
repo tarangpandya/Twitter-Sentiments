@@ -22,29 +22,43 @@ namespace TwitterSentiments
 
             //builder.Services.AddLogging();
 
-            builder.Services.AddControllers();
-
-            builder.Services.CofigureApplicationServices(builder.Configuration);
-
-            builder.Services.ConfigureTwitterHttpClient(builder.Configuration, logger);
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-
-            if (app.Environment.IsDevelopment())
+            try
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Twitter Sentiment API");
-                });
-            }
+                Serilog.Debugging.SelfLog.Enable(Console.Error);
+                Log.Information("Starting web host");
 
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
-            app.MapControllers();
-            app.Run();
+                builder.Services.AddControllers();
+
+                builder.Services.CofigureApplicationServices(builder.Configuration);
+
+                builder.Services.ConfigureTwitterHttpClient(builder.Configuration, logger);
+
+                var app = builder.Build();
+
+                // Configure the HTTP request pipeline.
+
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI(options =>
+                    {
+                        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Twitter Sentiment API");
+                    });
+                }
+
+                app.UseHttpsRedirection();
+                app.UseAuthorization();
+                app.MapControllers();
+                app.Run();
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
     }
 }
