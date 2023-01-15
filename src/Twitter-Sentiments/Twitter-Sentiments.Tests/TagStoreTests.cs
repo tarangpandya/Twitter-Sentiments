@@ -7,9 +7,10 @@ namespace TwitterSentiments.Tests
         [Theory]
         [InlineData(50)]
         [InlineData(10000)]
+        [InlineData(1000000)]
         public void TagStore_WorksOk(int iteration)
         {
-            var tagStore = new TagStore();
+            var tagStore = new TagStoreInMemory();
             var list = new List<string> { "one", "two", "three", "four" };
             var random = new Random();
             Parallel.For(0, iteration, i =>

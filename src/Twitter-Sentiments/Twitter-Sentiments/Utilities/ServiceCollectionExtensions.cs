@@ -15,8 +15,9 @@ namespace TwitterSentiments.Utilities
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddSingleton(configuration.GetSection(TwitterOptions.Section).Get<TwitterOptions>());
             services.AddSingleton<ITweetCountService, TweetCountService>();
-            services.AddSingleton<ITagStore, TagStore>();
+            services.AddSingleton<ITagStore, TagStoreInMemory>();
             services.AddSingleton<ITweetHashTagService, TweetHashTagService>();
+            services.AddSingleton<ITweetRemovalService, TweetRemovalService>();
             services.AddScoped<ITwitterService, TwitterService>();
             services.AddSwaggerGen();
             return services;

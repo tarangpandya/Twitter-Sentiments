@@ -2,18 +2,11 @@
 
 namespace TwitterSentiments.Data
 {
-    public interface ITagStore
-    {
-        public void AddTag(string tag);
-
-        public IDictionary<string, int> GetTags();
-    }
-
-    public class TagStore : ITagStore
+    public class TagStoreInMemory : ITagStore
     {
         private ConcurrentDictionary<string, int> Tags { get; set; }
 
-        public TagStore()
+        public TagStoreInMemory()
         {
             Tags = new ConcurrentDictionary<string, int>();
         }
@@ -27,5 +20,12 @@ namespace TwitterSentiments.Data
         {
             return Tags;
         }
+
+        public void Remove(string tag)
+        {
+            Tags.Remove(tag, out _);
+        }
+
+        public int Count => Tags.Count;
     }
 }
