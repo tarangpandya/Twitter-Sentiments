@@ -1,4 +1,5 @@
 using TwitterSentiments.Utilities;
+using Serilog;
 
 namespace TwitterSentiments
 {
@@ -9,11 +10,23 @@ namespace TwitterSentiments
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            var logger = new LoggerConfiguration()
+                        .ReadFrom.Configuration(builder.Configuration)
+                        .WriteTo.Console()
+                        .Enrich.FromLogContext()
+                        .CreateLogger();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
+
+            //builder.Services.AddLogging();
+
             builder.Services.AddControllers();
 
             builder.Services.CofigureApplicationServices(builder.Configuration);
 
-            builder.Services.ConfigureTwitterHttpClient(builder.Configuration);
+            builder.Services.ConfigureTwitterHttpClient(builder.Configuration, logger);
 
             var app = builder.Build();
 
