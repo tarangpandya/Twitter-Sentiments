@@ -1,5 +1,6 @@
 using TwitterSentiments.Utilities;
 using Serilog;
+using TwitterSentiments.Middleware;
 
 namespace TwitterSentiments
 {
@@ -36,6 +37,7 @@ namespace TwitterSentiments
                 var app = builder.Build();
 
                 // Configure the HTTP request pipeline.
+                app.UseMiddleware<ApiExceptionMiddleware>();
 
                 if (app.Environment.IsDevelopment())
                 {

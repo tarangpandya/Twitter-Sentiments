@@ -27,16 +27,8 @@ namespace TwitterSentiments.Controllers
         [HttpGet("FetchTweets")]
         public async Task<IActionResult> FetchTweets()
         {
-            try
-            {
                 await this.twitterService.FetchTweets();
                 return Ok();
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Error while fetching tweets");
-                return BadRequest("Unable to fetch records.");
-            }
         }
 
         [HttpGet("GetTweetCount")]
