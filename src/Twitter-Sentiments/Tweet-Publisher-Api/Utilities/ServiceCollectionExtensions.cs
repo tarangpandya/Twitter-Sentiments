@@ -18,6 +18,7 @@ namespace Tweet_Publisher_Api.Utilities
             services.AddSingleton(configuration.GetSection(TwitterOptions.Section).Get<TwitterOptions>());
             services.AddSingleton(configuration.GetSection(ServiceBusOptions.Section).Get<ServiceBusOptions>());
             services.AddScoped<ITwitterService, TwitterService>();
+            services.AddScoped<IMessagePublisher, ServiceBusMessageSender>();
             services.AddSwaggerGen();
 
 

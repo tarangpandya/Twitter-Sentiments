@@ -17,18 +17,19 @@ namespace Tweet_Publisher_Api.Services
         private readonly IHttpClientFactory httpClientFactory;
         private readonly TwitterOptions twitterOptions;
         private readonly ILogger<TwitterService> logger;
-        private readonly ServiceBusSender serviceBusSender;
+        private readonly IMessagePublisher messagePublisher;
 
         public TwitterService(
                 IHttpClientFactory httpClientFactory
                 , TwitterOptions twitterOptions
                 , ILogger<TwitterService> logger
-                , ServiceBusSender serviceBusSender)
+                , IMessagePublisher messagePublisher
+                )
         {
             this.httpClientFactory = httpClientFactory;
             this.twitterOptions = twitterOptions;
             this.logger = logger;
-            this.serviceBusSender = serviceBusSender;
+            this.messagePublisher = messagePublisher;
         }
 
         public async Task FetchTweets()
@@ -46,9 +47,7 @@ namespace Tweet_Publisher_Api.Services
                     tweet = JsonConvert.DeserializeObject<Tweet>(reader.ReadLine());
                     if (tweet != null)
                     {
-                        var message = new ServiceBusMessage(Encoding.UTF8.GetBytes($"{ tweet.Data.Text }"));
-                        await serviceBusSender.SendMessageAsync(message);
-                        logger.LogInformation("Published tweet");
+                        await messagePublisher.SendMessageAsync($"{tweet?.Data.Text}");
                     }
                 }
             }
